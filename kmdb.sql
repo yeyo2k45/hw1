@@ -98,35 +98,251 @@
 -- The Dark Knight Rises  Tom Hardy             Bane
 -- The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
 -- The Dark Knight Rises  Anne Hathaway         Selina Kyle
-
 -- Turns column mode on but headers off
 .mode column
-.headers off
+.headers on
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
--- TODO!
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS movie_roles;
+DROP TABLE IF EXISTS studios;
 
 -- Create new tables, according to your domain model
--- TODO!
+
+CREATE TABLE actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  real_name TEXT,
+  character_name TEXT,
+  movie_id INTEGER
+);
+
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year_released INTEGER,
+  MPAA_Rating TEXT,
+  studio_name TEXT
+);
+
+CREATE TABLE studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
 
 -- Insert data into your database that reflects the sample data shown above
+-- Insert Batman Begins
+INSERT INTO movies (
+  title,
+  year_released,
+  MPAA_Rating,
+  studio_name
+)
+VALUES (
+  "Batman Begins",
+  "2005",
+  "PG-13",
+  "Warner Bros."
+);
+-- Insert The Dark Knight
+INSERT INTO movies (
+  title,
+  year_released,
+  MPAA_Rating,
+  studio_name
+)
+VALUES (
+  "The Dark Knight",
+  "2008",
+  "PG-13",
+  "Warner Bros."
+);
+-- Insert The Dark Knight Rises
+INSERT INTO movies (
+  title,
+  year_released,
+  MPAA_Rating,
+  studio_name
+)
+VALUES (
+  "The Dark Knight Rises",
+  "2012",
+  "PG-13",
+  "Warner Bros."
+);
+-- Insert into ACTORS table
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Christian Bale",
+  "Bruce Wayne",
+  "1"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Michael caine",
+  "Alfred",
+  "1"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Liam neeson",
+  "Ra's Al Ghul",
+  "1"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Katie holmes",
+  "Rachel dawes",
+  "1"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Gary olden",
+  "Commissioner gordon",
+  "1"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Christian bale",
+  "Bruce wayne",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Heath Ledger",
+  "Joker",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Aaron Eckhart",
+  "Harvey Dent",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Michael Caine",
+  "Alfred",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Gary Olden",
+  "Commissioner Gordon",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Maggie Gyllenhaal",
+  "Rachel Dawes",
+  "2"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Christian Bale",
+  "Bruce Wayne",
+  "3"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Gary Olden",
+  "Commissioner Gordon",
+  "3"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Tom Hardy",
+  "Bane",
+  "3"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Joseph Gorden-Levitt",
+  "John Blake",
+  "3"
+);
+INSERT INTO actors (
+  real_name,
+  character_name,
+  movie_id
+)
+VALUES (
+  "Anne hathaway",
+  "Selina Kyle",
+  "3"
+);
 -- Use hard-coded foreign key IDs when necessary
--- TODO!
-
--- Prints a header for the movies output
-.print "Movies"
-.print "======"
-.print ""
-
+CREATE TABLE movie_roles (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  movie_id INTEGER,
+  actor_id INTEGER,
+  character_name TEXT
+);
 -- The SQL statement for the movies output
--- TODO!
-
--- Prints a header for the cast output
-.print ""
-.print "Top Cast"
-.print "========"
-.print ""
-
+SELECT * FROM movies;
 
 -- The SQL statement for the cast output
--- TODO!
+SELECT title, real_name, character_name
+FROM actors INNER JOIN movies ON movies.id = actors.movie_id
+;
